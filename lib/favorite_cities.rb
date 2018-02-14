@@ -3,11 +3,12 @@ require('pry')
 
 class City
   @@list = []
-
-  attr_accessor :cityname # is both a reader and writer method, allows us to read @cityname 
+  attr_reader :id
+  attr_accessor :cityname # is both a reader and writer method, allows us to read @cityname
 
   def initialize(city)
     @cityname = city
+    @id = @@list.length
   end # initialize
 
   def self.all()

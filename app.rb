@@ -2,6 +2,7 @@ require('sinatra')
 require('sinatra/reloader')
 also_reload('lib/**/*.rb')
 require('./lib/favorite_cities')
+require('rspec')
 require('pry')
 
 get('/') do
@@ -14,5 +15,6 @@ post('/') do
   item = City.new(name) # creates new instance of City Class
   item.save()
   @list = City.all()
-  erb(:output) # this points 
+  # binding.pry
+  erb(:input) # this points
 end

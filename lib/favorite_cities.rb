@@ -21,9 +21,19 @@ class City
     @@list = []
   end
 
+  def self.duplicate()
+    joe = @@list.uniq.length
+    fred = @@list.length
+    binding.pry
+    if joe != fred
+      "You can't enter the same city or ranking twice"
+    end
+  end
+
   def self.all()
     @@list
   end
+
 
   def save()
     @@list.push(self)

@@ -2,11 +2,13 @@ require('rspec')
 require('./lib/favorite_cities')
 
 describe(City) do
+
   describe(".all") do
     it("is empty at first") do
       expect(City.all()).to(eq([]))
     end
   end
+
   describe("#save") do
     it("saves an city to the list of cities") do
       city = City.new("Seattle", 1)
@@ -14,15 +16,6 @@ describe(City) do
       expect(City.all()).to(eq([city]))
     end
   end
-
-  # describe(".clear") do
-  #   it("clears all items from the list") do
-  #     item = City.new("Seattle")
-  #     item.save()
-  #     City.clear()
-  #     expect(City.all()).to(eq([]))
-  #   end
-  # end
 
   describe(".clear") do
     it("clears all items from the list") do
@@ -69,6 +62,16 @@ describe(City) do
     end
   end
 
+  describe(".duplicate") do
+    it('prevents user from adding duplicate rankings and cities') do
+      City.clear()
+      City.duplicate()
+      city = City.new("Pyonchang", 2)
+      city.save()
+      city = City.new("Pyonchang", 2)
+      city.save()
+      expect(City.duplicate()).to(eq("You can't enter the same city or ranking twice"))
+    end
+  end
 
-
-end
+end #City Class

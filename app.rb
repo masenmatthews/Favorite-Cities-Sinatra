@@ -1,15 +1,18 @@
 require('sinatra')
 require('sinatra/reloader')
 also_reload('lib/**/*.rb')
-require('./lib/index')
+require('./lib/favorite_cities')
 require('pry')
 
 get('/') do
-  erb(:input)
+  @list = City.all()
+  erb(:input) # links to views "input.erb"
 end
 
-post('/output') do # this is one part of the post route, e.g. instead of get('/output')
-  @city = params.fetch('city')
-  list = City.new(@city)
-  erb(:output)
+post('/') do
+  name = params["city"] # takes value from web page
+  item = City.new(name) # creates new instance of City Class
+  item.save()
+  @list = City.all()
+  erb(:output) # this points 
 end

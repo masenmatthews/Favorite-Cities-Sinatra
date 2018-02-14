@@ -14,13 +14,13 @@ describe(City) do
       expect(City.all()).to(eq([city]))
     end
   end
-#   describe(".clear") do
-#   it("clears all items from the list") do
-#     item = Item.new("tacos")
-#     item.save()
-#     Item.clear()
-#     expect(Item.all()).to(eq([]))
-#   end
-# end
+  describe(".clear") do
+  it("clears all items from the list") do
+    item = City.new("Seattle")
+    item.save()
+    City.clear()
+    expect(City.all()).to(eq([]))
+  end
+end
 
 end

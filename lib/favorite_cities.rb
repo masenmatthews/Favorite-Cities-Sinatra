@@ -18,4 +18,13 @@ class City
     @@list
   end
 
+  def self.clear()
+  @@list = []
+  end
+
+
+  # def self.clear()
+  # @@list = []
+  # end
+
 end # class City

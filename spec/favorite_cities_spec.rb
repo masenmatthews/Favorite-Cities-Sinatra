@@ -24,6 +24,15 @@ describe(City) do
   #   end
   # end
 
+  describe(".clear") do
+    it("clears all items from the list") do
+      item = City.new("Buenos Ares")
+      item.save()
+      City.clear()
+      expect(City.all()).to(eq([]))
+    end
+  end
+
   describe("#id") do
     it("increments an id by 1 each time a new item is added") do
       item = City.new("Seattle")
@@ -34,5 +43,18 @@ describe(City) do
       expect(item2.id()).to(eq(2))
     end
   end
+
+  describe(".find") do
+    it("finds an item based on its id") do
+      City.clear()
+      item = City.new("San Fran")
+      item.save()
+      item2 = City.new("Pyeonchang")
+      item2.save()
+      expect(City.find(1)).to(eq(item))
+      expect(City.find(2)).to(eq(item2))
+    end
+  end
+
 
 end

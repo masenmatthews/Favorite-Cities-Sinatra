@@ -8,7 +8,7 @@ class City
 
   def initialize(city)
     @cityname = city
-    @id = @@list.length
+    @id = @@list.length + 1
   end # initialize
 
   def self.all()
@@ -19,8 +19,17 @@ class City
     @@list.push(self)
   end
 
-  # def self.clear()
-  #   @@list = []
-  # end
+  def self.clear()
+    @@list = []
+  end
+
+  def self.find(id)
+    item_id = id.to_i()
+    @@list.each do |x|
+      if x.id == item_id
+        return x
+      end
+    end # each
+  end  # self.find
 
 end # class City

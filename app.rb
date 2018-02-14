@@ -12,9 +12,13 @@ end
 
 post('/') do
   name = params["city"] # takes value from web page
-  item = City.new(name) # creates new instance of City Class
-  item.save()
+  ranking = params["rank"]
+  item = City.new(name, ranking) # creates new instance of Class City
+  # item.rank = rank #item is the new instance of city, rank is a method from Class City
+  item.save() # save is a method from class City
+  City.sort
+
   @list = City.all()
   # binding.pry
-  erb(:input) # this points
+  erb(:input) # this points to the input page
 end

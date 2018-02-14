@@ -9,7 +9,7 @@ describe(City) do
   end
   describe("#save") do
     it("saves an city to the list of cities") do
-      city = City.new("Seattle")
+      city = City.new("Seattle", 1)
       city.save()
       expect(City.all()).to(eq([city]))
     end
@@ -26,7 +26,7 @@ describe(City) do
 
   describe(".clear") do
     it("clears all items from the list") do
-      item = City.new("Buenos Ares")
+      item = City.new("Buenos Ares", 2)
       item.save()
       City.clear()
       expect(City.all()).to(eq([]))
@@ -35,9 +35,9 @@ describe(City) do
 
   describe("#id") do
     it("increments an id by 1 each time a new item is added") do
-      item = City.new("Seattle")
+      item = City.new("Seattle", 3)
       item.save()
-      item2 = City.new("Seattle")
+      item2 = City.new("Seattle", 3)
       item2.save()
       expect(item.id()).to(eq(1))
       expect(item2.id()).to(eq(2))
@@ -45,16 +45,30 @@ describe(City) do
   end
 
   describe(".find") do
-    it("finds an item based on its id") do
+    it("finds an item based on its id", 4) do
       City.clear()
-      item = City.new("San Fran")
+      item = City.new("San Fran", 1)
       item.save()
-      item2 = City.new("Pyeonchang")
+      item2 = City.new("Pyeonchang", 2)
       item2.save()
       expect(City.find(1)).to(eq(item))
       expect(City.find(2)).to(eq(item2))
     end
   end
+
+  describe(".sort") do
+    it("sorts cities by rank", 4) do
+      City.clear()
+      item = City.new("San Fran", 3)
+      item.save()
+      item2 = City.new("Pyonchang", 2)
+      item2.save()
+      item3 = City.new("Seattle", 1)
+      item3.save()
+      expect(City.sort()).to(eq([item3, item2, item]))
+    end
+  end
+
 
 
 end
